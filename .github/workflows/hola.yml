@@ -1,0 +1,11 @@
+name: Hola Actions MDB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  saludo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mostrar saludo por terminal
+        run: echo "Hola, GitHub Actions! Soc MDB"
