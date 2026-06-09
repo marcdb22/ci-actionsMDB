@@ -17,21 +17,26 @@ jobs:
     name: Proves en PHP ${{ matrix.php-version }}
     
     steps:
-    # 1. Descarrega el codi del repositori
     - name: Checkout del codi
       uses: actions/checkout@v4
 
-    # 2. Prepara PHP al runner amb la versió de la matriu
     - name: Configurar PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
         extensions: mbstring, openssl, zip
 
-    # 3. Instal·la les dependències amb composer
     - name: Instal·lar dependències (Composer)
       run: composer install --prefer-dist --no-progress
 
-    # 4. Executa els tests amb phpunit
+    # Modificat per guardar el log en format JUnit
     - name: Executar tests (PHPUnit)
-      run: ./vendor/bin/phpunit
+      run: ./vendor/bin/phpunit --log-junit resultats.xml
+
+    # Pas nou per pujar l'artefacte sempre (encara que fallin els tests)
+    - name: Pujar informe de resultats
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: resultats-MDB
+        path: resultats.xml
