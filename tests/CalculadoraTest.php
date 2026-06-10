@@ -16,7 +16,14 @@ class CalculadoraTest extends TestCase
     {
         $this->assertSame(5, $this->calc->suma(2, 3));
     }
+/////////////////////////////////////////////////////////////////////////////
+   
+public function testMultiplica(): void
+    {
+        $this->assertSame(6, $this->calc->multiplica(2, 3));
+    }
 
+//////////////////////////////////////////////////////////////////////////////
     public function testResta(): void
     {
         $this->assertSame(-1, $this->calc->resta(2, 3));

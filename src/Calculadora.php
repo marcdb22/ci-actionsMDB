@@ -21,4 +21,9 @@ class Calculadora
         }
         return $a / $b;
     }
+////////////////////////////////////////////////////////////////////////////
+    public function multiplica(int $a, int $b): int
+    {
+        return $a * $b;
+    }
 }
